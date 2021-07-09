@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/wxt1471520488/images@main/hexo/bg.jepg">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/wxt1471520488/images@main/hexo/tab.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="my blog">
+  <meta name="author" content="XiaoTao">
+  <meta name="keywords" content="">
+  
+  <title>XiaoTao</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"wangxt.online","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"always","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"MN9k0rgUbdCatHWxVIY3zmL6-gzGzoHsz","app_key":"Rbb81eTDeJCiLF562bT9R9Yo","server_url":"https://mn9k0rgu.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Xiao Tao</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/darkCuisine">
+                <i class="iconfont icon-exp-fill"></i>
+                黑暗料理
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/goodThing">
+                <i class="iconfont icon-switch-fill"></i>
+                好物推荐
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/wxt1471520488/images@main/737385.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="不减到150不换标题！">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+
+
+
+
+
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/06/29/%E4%BF%AE%E6%94%B9%E8%BF%90%E8%A1%8C%E4%B8%AD%E7%9A%84docker%E5%AE%B9%E5%99%A8%E7%AB%AF%E5%8F%A3/" target="_self">
+          修改已经运行的docker容器的端口
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/06/29/%E4%BF%AE%E6%94%B9%E8%BF%90%E8%A1%8C%E4%B8%AD%E7%9A%84docker%E5%AE%B9%E5%99%A8%E7%AB%AF%E5%8F%A3/" target="_self">
+          
+          
+            
+          
+          
+一开始博客没有加Nginx，我把docker容器直接映射到了宿主机的80端口，后来加入了Nginx来管理静态资源、ssl等，这时候80端口被占用了，所以需要修改正在运行的docker容器映射的宿主机的端口。
+
+一、删除原有容器，重新启动一个容器把原来的容器删掉，重新启动一个，完了启动修改 端口映射 -p 为新的端口。
+
+这里我就不演示了，因为我没用这个方法，懒得重新配置一遍….
+
+二、修改原有容
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-29 22:25" pubdate>
+              2021-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Docker/">Docker</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/docker%E5%AE%B9%E5%99%A8/">docker容器</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/06/17/%E4%BD%BF%E7%94%A8ssh%E7%99%BB%E5%BD%95%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%A5%E9%94%99/" target="_self">
+          使用ssh登录远程服务器报错
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/06/17/%E4%BD%BF%E7%94%A8ssh%E7%99%BB%E5%BD%95%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%A5%E9%94%99/" target="_self">
+          
+          
+            
+          
+          今天使用ssh远程链接远程服务器时，突然报错了，报错如下图
+原因是我的远程服务器进行了重置，导致本地记录的验证信息过时了。
+有两个办法可以解决：
+
+删除本地验证信息，看图我们可以知道验证信息就是/Users/wangxiaotao/.ssh/known_hosts  的known_hosts文件；执行命令 rm -rf ./known_hosts将验证信息删除,或者将远程服务器对应的配置信息删除；
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-17 08:30" pubdate>
+              2021-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/SSH/">SSH</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ssh/">ssh</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/10/InnoDB%E5%87%A0%E4%B8%AA%E7%B4%A2%E5%BC%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
+          InnoDB几个索引数据结构的区别
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/10/InnoDB%E5%87%A0%E4%B8%AA%E7%B4%A2%E5%BC%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
+          
+          
+            
+          
+          索引的本质索引是帮助Mysql高效获取数据的==排好序==的==数据结构==
+索引数据结构假如有如上一张表，如果想要查询col2=23的那行数据，如果没有索引或者不走索引的话，那么将要查询7次才会查询到，并且这7行数据在磁盘里并不是挨着存储的，查询效率会非常低。
+二叉树
+
+如上图，我们可以考虑将col2列放在一个二叉树的数据结构中，同样还是查询col2=23的记录，则只需要查询3次就可以查询到，效
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-10 12:25" pubdate>
+              2020-09-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Mysql/">Mysql</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/InnoDB%E7%B4%A2%E5%BC%95/">InnoDB索引</a>
+            
+              <a href="/tags/Mysql/">Mysql</a>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/07/Centos%E5%AE%89%E8%A3%85jdk/" target="_self">
+          Cent os 安装jdk
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/07/Centos%E5%AE%89%E8%A3%85jdk/" target="_self">
+          
+          
+            
+          
+          手动安装创建安装目录123[root@iZ8vb7tm9o88h6ioml28vsZ usr]# cd /usr[root@iZ8vb7tm9o88h6ioml28vsZ usr]# mkdir java[root@iZ8vb7tm9o88h6ioml28vsZ usr]# cd java
+
+下载jdk 源码包
+Oracle 官网地址
+
+下载之后上传到服务器
+如果感觉麻烦的话，也可以使用wget
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-07 09:25" pubdate>
+              2020-09-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CentOs/">CentOs</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/jdk/">jdk</a>
+            
+              <a href="/tags/centos/">centos</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/11/%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E6%8E%A8%E9%80%81%E5%88%B0git%20%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" target="_self">
+          将本地项目推送到git 远程仓库
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/05/11/%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E6%8E%A8%E9%80%81%E5%88%B0git%20%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" target="_self">
+          
+          
+            
+          
+          将本地项目推送到git 远程仓库
+123456789101112# 初始化本地文件夹，加入git控制git init# 将文件 添加到git 暂存区git add .# 将文件提交到本地仓库git commit -m &quot;first commit&quot;# 创建一个名字为’main‘的远程分支git branch -M main# 绑定本地仓库和远程仓库git remote add o
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-11 12:30" pubdate>
+              2020-05-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/GIT/">GIT</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ssh/">ssh</a>
+            
+              <a href="/tags/git/">git</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/06/17/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%8D%95%E8%A1%A8%E7%9A%84%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" target="_self">
+          代码实现单表的分库分表
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/06/17/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%8D%95%E8%A1%A8%E7%9A%84%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/" target="_self">
+          
+          
+            
+          
+          啥叫分库分表？​       简单点说就是当我们遇到访问极为频繁且数据量巨大的库表的时候，我们首先想到的就是减少单库单表的数据量，以便减少数据查询所需要的时间，提高数据库的吞吐，这就是所谓的分库分表。
+为什么要都开始考虑起来分库分表？​       当我们在开发一些用户量小的系统时，比如公司自用的后台系统，相对是比较轻松的，因为你无需特别专注的考虑高并发，高访问，大数据量等问题，所以对于数据库乃至
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-17 08:40" pubdate>
+              2019-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/">分库分表</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/10/16/%E5%A1%AB%E4%B8%8AIntegerCache%E7%9A%84%E5%9D%91/" target="_self">
+          填上IntegerCache的坑
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2017/10/16/%E5%A1%AB%E4%B8%8AIntegerCache%E7%9A%84%E5%9D%91/" target="_self">
+          
+          
+            
+          
+          
+初入职场时，确实被IntegerCache坑过一次，如下代码，本地跑程序都没问题，一到线上就不行，原因就是IntegerCache的问题，比较两个Integer时，本地数据少，数值也小，正好都是true，正式数据多，可能就因为IntegerCache的问题导致该是true的为false了，导致程序的执行出错。  1234567//......Integer a = 200;Integer b =
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-10-16 21:01" pubdate>
+              2017-10-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">Java</a>
+            
+              <a href="/tags/Integer/">Integer</a>
+            
+              <a href="/tags/IntegerCache/">IntegerCache</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel=""><span>Powered by</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel=""><span>Xiao Tao</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        冀ICP备2021013174号-2
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+<div>
+<script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1280095261'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1280095261%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

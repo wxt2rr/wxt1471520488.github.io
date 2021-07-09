@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/wxt1471520488/images@main/hexo/bg.jepg">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/wxt1471520488/images@main/hexo/tab.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="my blog">
+  <meta name="author" content="XiaoTao">
+  <meta name="keywords" content="">
+  
+  <title>填上IntegerCache的坑 - XiaoTao</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"wangxt.online","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"always","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"MN9k0rgUbdCatHWxVIY3zmL6-gzGzoHsz","app_key":"Rbb81eTDeJCiLF562bT9R9Yo","server_url":"https://mn9k0rgu.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Xiao Tao</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/darkCuisine">
+                <i class="iconfont icon-exp-fill"></i>
+                黑暗料理
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/goodThing">
+                <i class="iconfont icon-switch-fill"></i>
+                好物推荐
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/wxt1471520488/images@main/hexo/info.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="填上IntegerCache的坑">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2017-10-16 21:01" pubdate>
+        2017年10月16日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">填上IntegerCache的坑</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>初入职场时，确实被IntegerCache坑过一次，如下代码，本地跑程序都没问题，一到线上就不行，原因就是IntegerCache的问题，比较两个Integer时，本地数据少，数值也小，正好都是true，正式数据多，可能就因为IntegerCache的问题导致该是true的为false了，导致程序的执行出错。<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//......</span><br>Integer a = <span class="hljs-number">200</span>;<br>Integer b = <span class="hljs-number">200</span>;<br><span class="hljs-keyword">if</span>(a == b)&#123;<br>    <span class="hljs-comment">//......</span><br>&#125;<br><span class="hljs-comment">//......</span><br></code></pre></td></tr></table></figure></p>
+</blockquote>
+<p>我们直接看Integer类的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IntegerCache</span> </span>&#123;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> low = -<span class="hljs-number">128</span>;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> high;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Integer cache[];<br><br>        <span class="hljs-keyword">static</span> &#123;<br>            <span class="hljs-comment">// high value may be configured by property</span><br>            <span class="hljs-keyword">int</span> h = <span class="hljs-number">127</span>;<br>            String integerCacheHighPropValue =<br>                sun.misc.VM.getSavedProperty(<span class="hljs-string">&quot;java.lang.Integer.IntegerCache.high&quot;</span>);<br>            <span class="hljs-keyword">if</span> (integerCacheHighPropValue != <span class="hljs-keyword">null</span>) &#123;<br>                <span class="hljs-keyword">int</span> i = parseInt(integerCacheHighPropValue);<br>                i = Math.max(i, <span class="hljs-number">127</span>);<br>                <span class="hljs-comment">// Maximum array size is Integer.MAX_VALUE</span><br>                h = Math.min(i, Integer.MAX_VALUE - (-low) -<span class="hljs-number">1</span>);<br>            &#125;<br>            high = h;<br><br>            cache = <span class="hljs-keyword">new</span> Integer[(high - low) + <span class="hljs-number">1</span>];<br>            <span class="hljs-keyword">int</span> j = low;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; cache.length; k++)<br>                cache[k] = <span class="hljs-keyword">new</span> Integer(j++);<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">IntegerCache</span><span class="hljs-params">()</span> </span>&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，Integer内部维护着IntegerCache的一个内部类，我们分析一下这个IntegerCache,它维护着两个静态int常量，和一个静态的Integer数组，然后静态块里初始化了high值和cache数组，并且将low到high中的数值add到了cache中，并且可以看到low值是常量-128,high值我们是可以通过配置文件配置的，也就是说我们可以根据jvm自行修改IntegerCache的阈值(最大值)，只是看IntegerCache的话发现很简单，接下来我们结合Integer的几个方法在分析一下：</p>
+<p>Integer的构造方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Integer</span><span class="hljs-params">(<span class="hljs-keyword">int</span> value)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.value = value;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Integer的parstInt方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Integer <span class="hljs-title">valueOf</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;<br>        <span class="hljs-keyword">assert</span> IntegerCache.high &gt;= <span class="hljs-number">127</span>;<br>        <span class="hljs-keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)<br>            <span class="hljs-keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Integer(i);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Integer的parstInt方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">parseInt</span><span class="hljs-params">(String s, <span class="hljs-keyword">int</span> radix)</span> <span class="hljs-keyword">throws</span> NumberFormatException </span>&#123;<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">         * WARNING: This method may be invoked early during VM initialization</span><br><span class="hljs-comment">         * before IntegerCache is initialized. Care must be taken to not use</span><br><span class="hljs-comment">         * the valueOf method.</span><br><span class="hljs-comment">         */</span><br><br>        <span class="hljs-keyword">if</span> (s == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NumberFormatException(<span class="hljs-string">&quot;null&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (radix &lt; Character.MIN_RADIX) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NumberFormatException(<span class="hljs-string">&quot;radix &quot;</span> + radix +<br>                                            <span class="hljs-string">&quot; less than Character.MIN_RADIX&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (radix &gt; Character.MAX_RADIX) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NumberFormatException(<span class="hljs-string">&quot;radix &quot;</span> + radix +<br>                                            <span class="hljs-string">&quot; greater than Character.MAX_RADIX&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">int</span> result = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">boolean</span> negative = <span class="hljs-keyword">false</span>;<br>        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, len = s.length();<br>        <span class="hljs-keyword">int</span> limit = -Integer.MAX_VALUE;<br>        <span class="hljs-keyword">int</span> multmin;<br>        <span class="hljs-keyword">int</span> digit;<br><br>        <span class="hljs-keyword">if</span> (len &gt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">char</span> firstChar = s.charAt(<span class="hljs-number">0</span>);<br>            <span class="hljs-keyword">if</span> (firstChar &lt; <span class="hljs-string">&#x27;0&#x27;</span>) &#123; <span class="hljs-comment">// Possible leading &quot;+&quot; or &quot;-&quot;</span><br>                <span class="hljs-keyword">if</span> (firstChar == <span class="hljs-string">&#x27;-&#x27;</span>) &#123;<br>                    negative = <span class="hljs-keyword">true</span>;<br>                    limit = Integer.MIN_VALUE;<br>                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (firstChar != <span class="hljs-string">&#x27;+&#x27;</span>)<br>                    <span class="hljs-keyword">throw</span> NumberFormatException.forInputString(s);<br><br>                <span class="hljs-keyword">if</span> (len == <span class="hljs-number">1</span>) <span class="hljs-comment">// Cannot have lone &quot;+&quot; or &quot;-&quot;</span><br>                    <span class="hljs-keyword">throw</span> NumberFormatException.forInputString(s);<br>                i++;<br>            &#125;<br>            multmin = limit / radix;<br>            <span class="hljs-keyword">while</span> (i &lt; len) &#123;<br>                <span class="hljs-comment">// Accumulating negatively avoids surprises near MAX_VALUE</span><br>                digit = Character.digit(s.charAt(i++),radix);<br>                <span class="hljs-keyword">if</span> (digit &lt; <span class="hljs-number">0</span>) &#123;<br>                    <span class="hljs-keyword">throw</span> NumberFormatException.forInputString(s);<br>                &#125;<br>                <span class="hljs-keyword">if</span> (result &lt; multmin) &#123;<br>                    <span class="hljs-keyword">throw</span> NumberFormatException.forInputString(s);<br>                &#125;<br>                result *= radix;<br>                <span class="hljs-keyword">if</span> (result &lt; limit + digit) &#123;<br>                    <span class="hljs-keyword">throw</span> NumberFormatException.forInputString(s);<br>                &#125;<br>                result -= digit;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">throw</span> NumberFormatException.forInputString(s);<br>        &#125;<br>        <span class="hljs-keyword">return</span> negative ? result : -result;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，通过Integer的构造方法创建Integer对象时，并不会跟IntegerCache扯上关系，也就是说创建多少个都是新对象，比较的话都是false，因为他们的地址值都不一样；parseInt方法返回的是int基本类型，所以跟IntegerCache也没有关系；我们再来看一下valueOf方法，在给定的IntegerCache的阈值范围内，Integer对象都是从cache数组中取到的，而内部类都是懒加载，在使用时加载内部类，并且创建阈值之内的所有Integer对象并存入cache中，cache是静态常量数组，由常量池维护着，cache被所有的Integer对象共享，所以只要是比较cache阈值之内的两个Integer的结果都是true，因为本身他们就是同一个对象。(ps:Integer a = 1; 默认调用的是valueOf方法)。</p>
+<p>到此为止，我们应该对IntegerCache有了一定的了解，那么做点习题巩固一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java">Integer x = <span class="hljs-number">1</span>;<br>Integer y = <span class="hljs-number">1</span>;<br>System.out.println(String.format(<span class="hljs-string">&quot;1:%s&quot;</span>,x == y));<span class="hljs-comment">// 1</span><br>x = <span class="hljs-number">127</span>;<br>y = <span class="hljs-number">127</span>;<br>System.out.println(String.format(<span class="hljs-string">&quot;2:%s&quot;</span>,x == y));<span class="hljs-comment">// 2</span><br>x = <span class="hljs-number">128</span>;<br>y = <span class="hljs-number">128</span>;<br>System.out.println(String.format(<span class="hljs-string">&quot;3:%s&quot;</span>,x == y));<span class="hljs-comment">// 3</span><br>x = <span class="hljs-keyword">new</span> Integer(<span class="hljs-number">1</span>);<br>y = <span class="hljs-keyword">new</span> Integer(<span class="hljs-number">1</span>);<br>System.out.println(String.format(<span class="hljs-string">&quot;4:%s&quot;</span>,x == y));<span class="hljs-comment">// 4</span><br>x = Integer.parseInt(<span class="hljs-string">&quot;127&quot;</span>);<br>y = Integer.parseInt(<span class="hljs-string">&quot;127&quot;</span>);<br>System.out.println(String.format(<span class="hljs-string">&quot;5:%s&quot;</span>,x == y));<span class="hljs-comment">// 5</span><br>x = Integer.parseInt(<span class="hljs-string">&quot;128&quot;</span>);<br>y = Integer.parseInt(<span class="hljs-string">&quot;128&quot;</span>);<br>System.out.println(String.format(<span class="hljs-string">&quot;6:%s&quot;</span>,x == y));<span class="hljs-comment">// 6</span><br>x = <span class="hljs-keyword">new</span> Integer(<span class="hljs-number">1</span>);<br>System.out.println(String.format(<span class="hljs-string">&quot;7:%s&quot;</span>,x == y));<span class="hljs-comment">// 7</span><br>x = <span class="hljs-keyword">new</span> Integer(<span class="hljs-number">128</span>);<br>System.out.println(String.format(<span class="hljs-string">&quot;8:%s&quot;</span>,x == y));<span class="hljs-comment">// 8</span><br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p>1:true<br> 2:true<br> 3:false<br> 4:false<br> 5:true<br> 6:false<br> 7:false<br> 8:false</p>
+<p>如果你都做对了，那么你对IntegerCache已经算是过关了，^_^！！！这里在说一下x = Integer.parseInt(“127”)和y = Integer.parseInt(“127”)这两个比较，因为parstInt()方法返回的是int基本类型,自动装箱，就变成了Integer x = 127;调用valueOf方法,所以判断结果和直接调用valueOf方法是一样的。</p>
+<p>续：下边输出结果是什么</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;<br>    Integer x = <span class="hljs-number">1</span>;<br>    Integer y = <span class="hljs-number">1</span>;<br>    System.out.println(x.equals(y));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上边x和y都是各自创建了一个新的Integer对象，两个引用对象去equals的话，一般是比较地址值，返回应该是false，但是像Integer和String这种类，都重写了equals方法，Integer的equals实际就是两个int基本类型的值比较，所以返回的是true。如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Compares this object to the specified object.  The result is</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@code</span> true&#125; if and only if the argument is not</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@code</span> null&#125; and is an &#123;<span class="hljs-doctag">@code</span> Integer&#125; object that</span><br><span class="hljs-comment"> * contains the same &#123;<span class="hljs-doctag">@code</span> int&#125; value as this object.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span>   obj   the object to compare with.</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span>  &#123;<span class="hljs-doctag">@code</span> true&#125; if the objects are the same;</span><br><span class="hljs-comment"> *          &#123;<span class="hljs-doctag">@code</span> false&#125; otherwise.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object obj)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> Integer) &#123;<br>        <span class="hljs-keyword">return</span> value == ((Integer)obj).intValue();<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>另外，除了Integer，向Long、Double等包装类，都有缓存区的操作，所以在使用两个包装类进行相等判断时需要注意，最好使用equals方法，引用类判断是否相等就应该使用equals方法，然后重写equals实现我们想要的相等规则。使用包装类型和基本类型做判断则不需要，会自动拆箱。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Integer/">Integer</a>
+                    
+                      <a class="hover-with-bg" href="/tags/IntegerCache/">IntegerCache</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/06/17/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%8D%95%E8%A1%A8%E7%9A%84%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">代码实现单表的分库分表</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"MN9k0rgUbdCatHWxVIY3zmL6-gzGzoHsz","appKey":"Rbb81eTDeJCiLF562bT9R9Yo","placeholder":"来撩骚啊~","path":"window.location.pathname","avatar":"wavatar","meta":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"requiredFields":[]},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel=""><span>Powered by</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel=""><span>Xiao Tao</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        冀ICP备2021013174号-2
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+<div>
+<script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1280095261'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1280095261%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

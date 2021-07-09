@@ -1,0 +1,587 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/wxt1471520488/images@main/hexo/bg.jepg">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/wxt1471520488/images@main/hexo/tab.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="my blog">
+  <meta name="author" content="XiaoTao">
+  <meta name="keywords" content="">
+  
+  <title>Cent os 安装jdk - XiaoTao</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"wangxt.online","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"always","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"MN9k0rgUbdCatHWxVIY3zmL6-gzGzoHsz","app_key":"Rbb81eTDeJCiLF562bT9R9Yo","server_url":"https://mn9k0rgu.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Xiao Tao</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/darkCuisine">
+                <i class="iconfont icon-exp-fill"></i>
+                黑暗料理
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/goodThing">
+                <i class="iconfont icon-switch-fill"></i>
+                好物推荐
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/wxt1471520488/images@main/hexo/info.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Cent os 安装jdk">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-07 09:25" pubdate>
+        2020年9月7日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Cent os 安装jdk</h1>
+            
+            <div class="markdown-body">
+              <h3 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h3><h4 id="创建安装目录"><a href="#创建安装目录" class="headerlink" title="创建安装目录"></a>创建安装目录</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">[root@iZ8vb7tm9o88h6ioml28vsZ usr]<span class="hljs-comment"># cd /usr</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ usr]<span class="hljs-comment"># mkdir java</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ usr]<span class="hljs-comment"># cd java</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="下载jdk-源码包"><a href="#下载jdk-源码包" class="headerlink" title="下载jdk 源码包"></a>下载jdk 源码包</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-downloads.html">Oracle 官网地址</a></p>
+</blockquote>
+<p>下载之后上传到服务器</p>
+<p>如果感觉麻烦的话，也可以使用wget</p>
+<blockquote>
+<p>直接使用下载链接获取到的tar包是有问题的，oracle对链接进行了授权校验：wget <a target="_blank" rel="noopener" href="https://download.oracle.com/otn/java/jdk/8u291-b10/d7fc238d0cbf4b0dac67be84580cfb4b/jdk-8u291-linux-x64.tar.gz">https://download.oracle.com/otn/java/jdk/8u291-b10/d7fc238d0cbf4b0dac67be84580cfb4b/jdk-8u291-linux-x64.tar.gz</a></p>
+</blockquote>
+<p>我们需要在下载链接之前加上 –no-cookies –no-check-certificate –header “Cookie: gpw_e24=http%3A%2F%2F<a href="http://www.oracle.com%2F">www.oracle.com%2F</a>; oraclelicense=accept-securebackup-cookie” ，如: </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget --no-cookies --no-check-certificate --header <span class="hljs-string">&quot;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie&quot;</span> <span class="hljs-string">&quot;https://download.oracle.com/otn/java/jdk/8u291-b10/d7fc238d0cbf4b0dac67be84580cfb4b/jdk-8u291-linux-x64.tar.gz&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 解压包</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ java]<span class="hljs-comment"># tar -zxvf jdk-8u141-linux-x64.tar.gz</span><br><span class="hljs-comment"># 解压完之后会生成一个 jdk1.8.0_141 的文件夹</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ java]<span class="hljs-comment"># ls</span><br>jdk1.8.0_141  jdk-8u141-linux-x64.tar.gz<br>[root@iZ8vb7tm9o88h6ioml28vsZ java]<span class="hljs-comment"># cd jdk1.8.0_141/</span><br><span class="hljs-comment"># 获取当前文件夹得绝对路径，配置环境变量时会用</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ jdk1.8.0_141]<span class="hljs-comment"># pwd</span><br>/usr/java/java/jdk1.8.0_141<br></code></pre></td></tr></table></figure>
+
+<h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh">vim /etc/profile<br><br>在文件最后加上<br><span class="hljs-comment"># java</span><br><span class="hljs-built_in">export</span> JAVA_HOME=/usr/java/java/jdk1.8.0_141 <span class="hljs-comment">#上步 pwd 命令获取到的路径</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$PATH</span><br><span class="hljs-built_in">export</span> CLASSPATH=.:<span class="hljs-variable">$JAVA_HOME</span>/lib/dt.jar:<span class="hljs-variable">$JAVA_HOME</span>/lib<br></code></pre></td></tr></table></figure>
+
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 使 profile 修改生效</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ java]<span class="hljs-comment"># source /etc/profile</span><br><span class="hljs-comment"># 验证结果</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ java]<span class="hljs-comment"># java -version</span><br>java version <span class="hljs-string">&quot;1.8.0_291&quot;</span><br>Java(TM) SE Runtime Environment (build 1.8.0_291-b10)<br>Java HotSpot(TM) 64-Bit Server VM (build 25.291-b10, mixed mode)<br></code></pre></td></tr></table></figure>
+
+<h3 id="yum安装"><a href="#yum安装" class="headerlink" title="yum安装"></a>yum安装</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 搜索可用的jdk安装包</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ java]<span class="hljs-comment"># yum search java|grep jdk</span><br>ldapjdk-javadoc.noarch : Javadoc <span class="hljs-keyword">for</span> ldapjdk<br>java-1.6.0-openjdk.x86_64 : OpenJDK Runtime Environment<br>java-1.6.0-openjdk-demo.x86_64 : OpenJDK Demos<br>java-1.6.0-openjdk-devel.x86_64 : OpenJDK Development Environment<br>java-1.6.0-openjdk-javadoc.x86_64 : OpenJDK API Documentation<br>java-1.6.0-openjdk-src.x86_64 : OpenJDK Source Bundle<br>java-1.7.0-openjdk.x86_64 : OpenJDK Runtime Environment<br>java-1.7.0-openjdk-accessibility.x86_64 : OpenJDK accessibility connector<br>java-1.7.0-openjdk-demo.x86_64 : OpenJDK Demos<br>java-1.7.0-openjdk-devel.x86_64 : OpenJDK Development Environment<br>java-1.7.0-openjdk-headless.x86_64 : The OpenJDK runtime environment without<br>java-1.7.0-openjdk-javadoc.noarch : OpenJDK API Documentation<br>java-1.7.0-openjdk-src.x86_64 : OpenJDK Source Bundle<br>java-1.8.0-openjdk.i686 : OpenJDK Runtime Environment 8<br>java-1.8.0-openjdk.x86_64 : OpenJDK 8 Runtime Environment<br>java-1.8.0-openjdk-accessibility.i686 : OpenJDK accessibility connector<br>java-1.8.0-openjdk-accessibility.x86_64 : OpenJDK accessibility connector<br>java-1.8.0-openjdk-demo.i686 : OpenJDK Demos 8<br>java-1.8.0-openjdk-demo.x86_64 : OpenJDK 8 Demos<br>java-1.8.0-openjdk-devel.i686 : OpenJDK Development Environment 8<br>java-1.8.0-openjdk-devel.x86_64 : OpenJDK 8 Development Environment<br>java-1.8.0-openjdk-headless.i686 : OpenJDK Headless Runtime Environment 8<br>java-1.8.0-openjdk-headless.x86_64 : OpenJDK 8 Headless Runtime Environment<br>java-1.8.0-openjdk-javadoc.noarch : OpenJDK 8 API documentation<br>java-1.8.0-openjdk-javadoc-zip.noarch : OpenJDK 8 API documentation compressed<br>java-1.8.0-openjdk-src.i686 : OpenJDK Source Bundle 8<br>java-1.8.0-openjdk-src.x86_64 : OpenJDK 8 Source Bundle<br>java-11-openjdk.i686 : OpenJDK Runtime Environment 11<br>java-11-openjdk.x86_64 : OpenJDK 11 Runtime Environment<br>java-11-openjdk-demo.i686 : OpenJDK Demos 11<br>java-11-openjdk-demo.x86_64 : OpenJDK 11 Demos<br>java-11-openjdk-devel.i686 : OpenJDK Development Environment 11<br>java-11-openjdk-devel.x86_64 : OpenJDK 11 Development Environment<br>java-11-openjdk-headless.i686 : OpenJDK Headless Runtime Environment 11<br>java-11-openjdk-headless.x86_64 : OpenJDK 11 Headless Runtime Environment<br>java-11-openjdk-javadoc.i686 : OpenJDK 11 API documentation<br>java-11-openjdk-javadoc.x86_64 : OpenJDK 11 API documentation<br>java-11-openjdk-javadoc-zip.i686 : OpenJDK 11 API documentation compressed <span class="hljs-keyword">in</span> a<br>java-11-openjdk-javadoc-zip.x86_64 : OpenJDK 11 API documentation compressed <span class="hljs-keyword">in</span><br>java-11-openjdk-jmods.i686 : JMods <span class="hljs-keyword">for</span> OpenJDK 11<br>java-11-openjdk-jmods.x86_64 : JMods <span class="hljs-keyword">for</span> OpenJDK 11<br>java-11-openjdk-src.i686 : OpenJDK Source Bundle 11<br>java-11-openjdk-src.x86_64 : OpenJDK 11 Source Bundle<br>java-11-openjdk-static-libs.i686 : OpenJDK libraries <span class="hljs-keyword">for</span> static linking 11<br>java-11-openjdk-static-libs.x86_64 : OpenJDK 11 libraries <span class="hljs-keyword">for</span> static linking<br>java-latest-openjdk.x86_64 : OpenJDK 16 Runtime Environment<br>java-latest-openjdk-debug.x86_64 : OpenJDK 16 Runtime Environment with full<br>java-latest-openjdk-demo.x86_64 : OpenJDK 16 Demos<br>java-latest-openjdk-demo-debug.x86_64 : OpenJDK 16 Demos with full debugging on<br>java-latest-openjdk-demo-fastdebug.x86_64 : OpenJDK 16 Demos with minimal<br>java-latest-openjdk-devel.x86_64 : OpenJDK 16 Development Environment<br>java-latest-openjdk-devel-debug.x86_64 : OpenJDK 16 Development Environment with<br>java-latest-openjdk-devel-fastdebug.x86_64 : OpenJDK 16 Development Environment<br>java-latest-openjdk-fastdebug.x86_64 : OpenJDK 16 Runtime Environment with<br>java-latest-openjdk-headless.x86_64 : OpenJDK 16 Headless Runtime Environment<br>java-latest-openjdk-headless-debug.x86_64 : OpenJDK 16 Runtime Environment with<br>java-latest-openjdk-headless-fastdebug.x86_64 : OpenJDK 16 Runtime Environment<br>java-latest-openjdk-javadoc.x86_64 : OpenJDK 16 API documentation<br>java-latest-openjdk-javadoc-zip.x86_64 : OpenJDK 16 API documentation compressed<br>java-latest-openjdk-jmods.x86_64 : JMods <span class="hljs-keyword">for</span> OpenJDK 16<br>java-latest-openjdk-jmods-debug.x86_64 : JMods <span class="hljs-keyword">for</span> OpenJDK 16 with full<br>java-latest-openjdk-jmods-fastdebug.x86_64 : JMods <span class="hljs-keyword">for</span> OpenJDK 16 with minimal<br>java-latest-openjdk-src.x86_64 : OpenJDK 16 Source Bundle<br>java-latest-openjdk-src-debug.x86_64 : OpenJDK 16 Source Bundle <span class="hljs-keyword">for</span> packages<br>java-latest-openjdk-src-fastdebug.x86_64 : OpenJDK 16 Source Bundle<br>java-latest-openjdk-static-libs.x86_64 : OpenJDK 16 libraries <span class="hljs-keyword">for</span> static linking<br>java-latest-openjdk-static-libs-debug.x86_64 : OpenJDK 16 libraries <span class="hljs-keyword">for</span> static<br>java-latest-openjdk-static-libs-fastdebug.x86_64 : OpenJDK 16 libraries <span class="hljs-keyword">for</span><br>ldapjdk.noarch : The Mozilla LDAP Java SDK<br><span class="hljs-comment"># 安装</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ java]<span class="hljs-comment"># yum install java-1.8.0-openjdk</span><br><span class="hljs-comment"># 默认安装在 /usr/lib/jvm 下</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ jvm]<span class="hljs-comment"># cd /usr/lib/jvm/</span><br>[root@iZ8vb7tm9o88h6ioml28vsZ jvm]<span class="hljs-comment"># ls -l</span><br>total 4<br>drwxr-xr-x 3 root root 4096 Jun 20 18:33 java-1.8.0-openjdk-1.8.0.292.b10-1.el7_9.x86_64<br>lrwxrwxrwx 1 root root   21 Jun 20 18:33 jre -&gt; /etc/alternatives/jre<br>lrwxrwxrwx 1 root root   27 Jun 20 18:33 jre-1.8.0 -&gt; /etc/alternatives/jre_1.8.0<br>lrwxrwxrwx 1 root root   35 Jun 20 18:33 jre-1.8.0-openjdk -&gt; /etc/alternatives/jre_1.8.0_openjdk<br>lrwxrwxrwx 1 root root   51 Jun 20 18:33 jre-1.8.0-openjdk-1.8.0.292.b10-1.el7_9.x86_64 -&gt; java-1.8.0-openjdk-1.8.0.292.b10-1.el7_9.x86_64/jre<br>lrwxrwxrwx 1 root root   29 Jun 20 18:33 jre-openjdk -&gt; /etc/alternatives/jre_openjdk<br></code></pre></td></tr></table></figure>
+
+<p>安装完之后同样配置环境变量，验证结果。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/CentOs/">CentOs</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/jdk/">jdk</a>
+                    
+                      <a class="hover-with-bg" href="/tags/centos/">centos</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/10/InnoDB%E5%87%A0%E4%B8%AA%E7%B4%A2%E5%BC%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">InnoDB几个索引数据结构的区别</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/11/%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E6%8E%A8%E9%80%81%E5%88%B0git%20%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">
+                        <span class="hidden-mobile">将本地项目推送到git 远程仓库</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"MN9k0rgUbdCatHWxVIY3zmL6-gzGzoHsz","appKey":"Rbb81eTDeJCiLF562bT9R9Yo","placeholder":"来撩骚啊~","path":"window.location.pathname","avatar":"wavatar","meta":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"requiredFields":[]},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel=""><span>Powered by</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel=""><span>Xiao Tao</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        冀ICP备2021013174号-2
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+<div>
+<script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1280095261'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1280095261%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
